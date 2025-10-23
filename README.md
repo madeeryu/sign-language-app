@@ -80,7 +80,7 @@ Backend akan berjalan di `http://localhost:5000`
 
 ### Frontend
 
-Frontend berjalan sebagai static files (langsung buko file HTML), bisa menggunakan Python HTTP server:
+Frontend berjalan sebagai static files, bisa menggunakan Python HTTP server:
 
 ```bash
 cd frontend
@@ -167,7 +167,19 @@ this.backendUrl = 'http://localhost:5000';  // URL backend
 ### Kamera Tidak Terdeteksi
 1. Pastikan kamera tidak digunakan aplikasi lain
 2. Cek permission kamera di browser
-3. Coba ganti index kamera (0, 1, 2, dst)
+3. Kamera yang digunakan untuk testing ada menunggunakan Droidcam client, jikalau menggunakan kamera internal maka unmark **CAMERA_URL = 0** di `app.py`
+```bash
+def initialize_camera(index=0):
+      ...
+        # CAMERA_URL = os.environ.get("CAMERA_URL", "https://9fbd584d67e8.ngrok-free.app/video")
+        # CAMERA_URL = "https://086a506eab59.ngrok-free.app/mjpegfeed"
+      #   CAMERA_URL = 0 # ganti 0, 1, 2 dan seterusnya 
+        CAMERA_URL = "http://192.168.1.10:4747/video" 
+        camera = cv2.VideoCapture(CAMERA_URL)
+      ...
+```
+
+Jika masih error coba ganti index kamera (0, 1, 2, dst)
 
 ### Model Tidak Terload
 1. Pastikan file `best.pt` ada di folder backend
