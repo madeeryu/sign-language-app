@@ -80,7 +80,7 @@ Backend akan berjalan di `http://localhost:5000`
 
 ### Frontend
 
-Frontend berjalan sebagai static files, bisa menggunakan Python HTTP server:
+Frontend berjalan sebagai static files (langsung buko file HTML), bisa menggunakan Python HTTP server:
 
 ```bash
 cd frontend
