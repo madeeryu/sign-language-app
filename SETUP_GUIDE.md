@@ -86,9 +86,3 @@ Jalankan `python test_api.py` di folder backend untuk test koneksi.
 
 ## Butuh Bantuan?
 - Check file `README.md` untuk dokumentasi lengkap
-- Check tab "Network" di browser developer tools
-- Pastikan tidak ada aplikasi lain yang menggunakan kamera
-
----
-
-**Selamat mencoba! 🎉**
