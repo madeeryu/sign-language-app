@@ -9,10 +9,9 @@ import threading
 import time
 import logging
 from pathlib import Path
-import torch
-from ultralytics.nn.tasks import DetectionModel
+
 app = Flask(__name__)
-CORS(app, origins=["*"])
+CORS(app)
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -33,7 +32,7 @@ import os
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 # WEIGHTS_PATH = os.path.join(SCRIPT_DIR, "best.pt")  # Path ke model YOLO Anda
 # WEIGHTS_PATH = "/sign_language_app/backend/best.pt"
-WEIGHTS_PATH = "/mnt/d/PROJEK_7/sign_language_app/backend/best.pt"
+WEIGHTS_PATH = "best.pt"
 CONFIDENCE_THRESHOLD = 0.25
 IMG_SIZE = 640
 
@@ -41,44 +40,22 @@ IMG_SIZE = 640
 print(f"Looking for model at: {WEIGHTS_PATH}")
 print(f"Model exists: {os.path.exists(WEIGHTS_PATH)}")
 
-# def load_model():
-#     """Load YOLO model"""
-#     global model, model_loaded, names
-#     try:
-#         logger.info("Loading YOLO model...")
-#         model = YOLO(WEIGHTS_PATH, task="detect")
-#         names = model.names  # FIX: Properly assign names
-#         model_loaded = True
-#         logger.info(f"Model loaded successfully. Classes: {names}")
-#         return True
-#     except Exception as e:
-#         logger.error(f"Error loading model: {e}")
-#         model_loaded = False
-#         names = {}  # FIX: Reset names on error
-#         return False
-
 def load_model():
     """Load YOLO model"""
     global model, model_loaded, names
     try:
         logger.info("Loading YOLO model...")
-        
-        # FIX: Add safe globals for PyTorch 2.6+
-        import torch
-        if hasattr(torch.serialization, 'add_safe_globals'):
-            from ultralytics.nn.tasks import DetectionModel
-            torch.serialization.add_safe_globals([DetectionModel])
-        
         model = YOLO(WEIGHTS_PATH, task="detect")
-        names = model.names
+        names = model.names  # FIX: Properly assign names
         model_loaded = True
         logger.info(f"Model loaded successfully. Classes: {names}")
         return True
     except Exception as e:
         logger.error(f"Error loading model: {e}")
         model_loaded = False
-        names = {}
+        names = {}  # FIX: Reset names on error
         return False
+
 
 def initialize_camera(index=0):
     """Initialize camera with given index"""
@@ -88,9 +65,10 @@ def initialize_camera(index=0):
             camera.release()
             time.sleep(0.1)
         
-        CAMERA_URL = os.environ.get("CAMERA_URL", "http://192.168.1.10:4747/video")
+        # CAMERA_URL = os.environ.get("CAMERA_URL", "https://9fbd584d67e8.ngrok-free.app/video")
+        # CAMERA_URL = "https://086a506eab59.ngrok-free.app/mjpegfeed"
+        CAMERA_URL = "http://192.168.1.10:4747/video" 
         camera = cv2.VideoCapture(CAMERA_URL)
-                
         # FIX: Set camera properties for better performance
         camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
         camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
@@ -288,6 +266,5 @@ if __name__ == '__main__':
     if not initialize_camera(0):
         logger.warning("Default camera not available. You can select a camera from the UI.")
     
-    # Run the Flask app
-    # FIX: Disable debug mode in production and use threaded=True
-    app.run(host='0.0.0.0', port=5000, debug=False, threaded=True)
+    # app.run(host='0.0.0.0', port=5000, debug=False, threaded=True)
+    app.run(host='127.0.0.1', port=5000, debug=False, threaded=True)
