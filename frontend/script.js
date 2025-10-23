@@ -2,7 +2,7 @@ class SignLanguageApp {
     constructor() {
         this.backendUrl = window.location.hostname === 'localhost'
                  ? 'http://localhost:5000'
-                 : 'https://7eb1ddf54545.ngrok-free.app';
+                 : 'https://58b1f27b11a9.ngrok-free.app';
         this.isDetectionActive = false;
         this.predictionHistory = [];
         this.stats = {
