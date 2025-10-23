@@ -70,7 +70,10 @@ Copy file `best.pt` dari project Anda ke folder `backend/`
 
 4. **Run Server**:
 ```bash
+#windows
 python app.py
+#macOS/Linux
+python3 app.py
 ```
 
 Backend akan berjalan di `http://localhost:5000`
