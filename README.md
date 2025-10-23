@@ -23,8 +23,17 @@ sign-language-app/
 │   └── script.js          # JavaScript logic
 └── README.md
 ```
+## Cara Cepat Menjalankan Aplikasi
 
-## Instalasi
+### Untuk Windows (Mudah)
+1. **Copy model Anda**:
+   - Copy file `best.pt` dari project Anda ke folder `backend/`
+
+2. **Jalankan aplikasi**:
+   - Double-click `run.bat`
+   - Aplikasi akan otomatis terbuka di browser
+
+## Instalasi Manual (Jika skrip tidak berjalan)
 
 ### Backend (Python)
 
@@ -65,15 +74,6 @@ python -m http.server 8000
 
 Atau langsung buka `index.html` di browser.
 
-## Cara Cepat Menjalankan Aplikasi
-
-### Untuk Windows (Mudah)
-1. **Copy model Anda**:
-   - Copy file `best.pt` dari project Anda ke folder `backend/`
-
-2. **Jalankan aplikasi**:
-   - Double-click `run.bat`
-   - Aplikasi akan otomatis terbuka di browser
 
 ### Untuk Linux/Mac (Mudah)
 1. **Copy model Anda**:
@@ -86,26 +86,6 @@ Atau langsung buka `index.html` di browser.
    chmod +x run.sh
    ./run.sh
    ```
-
-## Cara Manual (Jika Script Tidak Berjalan)
-
-### 1. Setup Backend
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# atau
-venv\Scripts\activate     # Windows
-
-pip install -r requirements.txt
-python app.py
-```
-
-### 2. Setup Frontend (Terminal Baru)
-```bash
-cd frontend
-python -m http.server 8000
-```
 
 ### 3. Buka Browser
 ```
