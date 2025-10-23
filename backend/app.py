@@ -68,8 +68,8 @@ def initialize_camera(index=0):
         # CAMERA_URL = os.environ.get("CAMERA_URL", "https://9fbd584d67e8.ngrok-free.app/video")
         # CAMERA_URL = "https://086a506eab59.ngrok-free.app/mjpegfeed"
         # CAMERA_URL = "https://086a506eab59.ngrok-free.app/mjpegfeed"
-        # CAMERA_URL = "http://192.168.1.10:4747/video" 
-        CAMERA_URL = 1 
+        # CAMERA_URL = 1 
+        CAMERA_URL = "http://192.168.1.10:4747/video" 
         camera = cv2.VideoCapture(CAMERA_URL)
         # FIX: Set camera properties for better performance
         camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
