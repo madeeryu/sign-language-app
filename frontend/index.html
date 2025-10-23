@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deteksi Bahasa Isyarat SIBI</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="logo-section">
+          <i class="fas fa-hands logo-icon"></i>
+          <h1>SIBI Detector</h1>
+        </div>
+        <div class="status-indicators">
+          <div class="status-item" id="camera-status">
+            <i class="fas fa-video"></i>
+            <span>Kamera</span>
+            <div class="status-dot disconnected" id="camera-dot"></div>
+          </div>
+          <div class="status-item" id="model-status">
+            <i class="fas fa-brain"></i>
+            <span>Model AI</span>
+            <div class="status-dot disconnected" id="model-dot"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Camera Section -->
+      <section class="camera-section">
+        <div class="section-header">
+          <h2><i class="fas fa-camera"></i> Kamera</h2>
+          <div class="camera-controls">
+            <!-- dropdown disembunyikan -->
+            <select id="camera-select" style="display:none"></select>
+            <!-- tombol refresh tetap ada -->
+            <button id="refresh-camera" title="Cek koneksi IP-cam">
+            </button>
+          </div>
+        </div>
+        <div class="video-container">
+          <img id="video-feed" src="http://localhost:5000/video_feed" alt="Camera Feed" class="video-feed">
+          <div class="video-overlay" id="video-overlay">
+            <div class="loading-spinner">
+              <i class="fas fa-spinner fa-spin"></i>
+              <p>Menghubungkan ke kamera...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prediction Section -->
+      <section class="prediction-section">
+        <div class="section-header">
+          <h2><i class="fas fa-chart-line"></i> Hasil Prediksi</h2>
+        </div>
+
+        <div class="prediction-display">
+          <div class="current-letter">
+            <div class="letter-display" id="current-letter">?</div>
+            <div class="letter-label">Huruf Terdeteksi</div>
+          </div>
+
+          <div class="prediction-details">
+            <div class="confidence-bar">
+              <div class="confidence-fill" id="confidence-fill"></div>
+              <span class="confidence-text" id="confidence-text">0%</span>
+            </div>
+
+            <div class="fps-display">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>FPS: </span>
+              <span id="fps-value">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="prediction-history">
+          <h3>Riwayat Prediksi</h3>
+          <div class="history-list" id="history-list"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Control Panel -->
+    <aside class="control-panel">
+      <div class="panel-header">
+        <h3><i class="fas fa-cogs"></i> Kontrol</h3>
+      </div>
+
+      <div class="control-group">
+        <button id="start-detection" class="btn-primary mb-3">
+          <i class="fas fa-play"></i> Mulai Deteksi
+        </button>
+        <button id="stop-detection" class="btn-secondary" disabled>
+          <i class="fas fa-stop"></i> Hentikan Deteksi
+        </button>
+      </div>
+
+      <div class="control-group">
+        <button id="reload-model" class="btn-outline">
+          <i class="fas fa-redo"></i> Reload Model
+        </button>
+      </div>
+
+      <div class="stats-panel">
+        <h4>Statistik</h4>
+        <div class="stat-item">
+          <span>Total Prediksi:</span>
+          <span id="total-predictions">0</span>
+        </div>
+        <div class="stat-item">
+          <span>Rata-rata Confidence:</span>
+          <span id="avg-confidence">0%</span>
+        </div>
+        <div class="stat-item">
+          <span>Waktu Berjalan:</span>
+          <span id="uptime">00:00:00</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Toast Notifications -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
