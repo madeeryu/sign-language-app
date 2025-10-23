@@ -33,6 +33,18 @@ sign-language-app/
    - Double-click `run.bat`
    - Aplikasi akan otomatis terbuka di browser
 
+### Untuk Linux/Mac (Mudah)
+1. **Copy model Anda**:
+   ```bash
+   cp /path/to/your/best.pt backend/
+   ```
+
+2. **Jalankan aplikasi**:
+   ```bash
+   chmod +x run.sh
+   ./run.sh
+   ```
+
 ## Instalasi Manual (Jika skrip tidak berjalan)
 
 ### Backend (Python)
@@ -75,17 +87,7 @@ python -m http.server 8000
 Atau langsung buka `index.html` di browser.
 
 
-### Untuk Linux/Mac (Mudah)
-1. **Copy model Anda**:
-   ```bash
-   cp /path/to/your/best.pt backend/
-   ```
 
-2. **Jalankan aplikasi**:
-   ```bash
-   chmod +x run.sh
-   ./run.sh
-   ```
 
 ### 3. Buka Browser
 ```
