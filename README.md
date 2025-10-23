@@ -23,10 +23,10 @@
 <div align="center">
 
 ### 💻 Desktop View
-<img src="assets/desktop-view.png" alt="Desktop View" width="90%">
+<img src="assets/desktop-view.png" alt="Desktop View" width="70%">
 
 ### 📱 Mobile View
-<img src="assets/mobile-view.png" alt="Mobile View" width="45%">
+<img src="assets/mobile-view.png" alt="Mobile View" width="70S%">
 
 ### 🎯 Detection in Action
 <img src="assets/detection-demo.gif" alt="Detection Demo" width="70%">
